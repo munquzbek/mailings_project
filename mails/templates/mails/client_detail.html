@@ -1,0 +1,22 @@
+{% extends 'mails/base.html'%}
+{% block content %}
+<style>
+    .container {
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">{{ object.name }} {{ object.surname }}</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">{{ object.comment }}</p>
+        <p>{{ object.email }}</p>
+        <div class="container">
+            <a href="#" type="button" class="btn btn-primary btn-lg px-5 margin:5px">Update</a>
+            <hr>
+            <a href="#" type="button" class="btn btn-outline-secondary btn-lg px-5">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
