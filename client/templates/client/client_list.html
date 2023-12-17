@@ -10,7 +10,7 @@ color: black;
 
 </style>
 
-  <a href="{% url 'mails:view' object.pk %}" class="list-group-item list-group-item-action">
+  <a href="{% url 'client:view' object.pk %}" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="fst-italic">{{ object.name }} {{ object.surname }}</h5>
       <small class="text-body-secondary">{{ object.email }}</small>

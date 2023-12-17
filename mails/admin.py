@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from mails.models import Client
+from mails.models import Message
 
 
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname')
-    search_fields = ('name', 'comment')
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'body')

@@ -21,7 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mails.urls', namespace='mails'))
+    path('', include('client.urls', namespace='client')),
+    path('list_message', include('mails.urls', namespace='mails')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
