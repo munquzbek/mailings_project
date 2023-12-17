@@ -1,0 +1,22 @@
+{% extends 'mails/base.html'%}
+{% block content %}
+
+{% for object in object_list %}
+<style>
+h5{
+font-weight: bold;
+color: black;
+}
+
+</style>
+  <a href="{% url 'mails:view_message' object.pk %}" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="fst-italic">{{ object.title }}</h5>
+      <small class="text-body-secondary">{{ object.create_at }}</small>
+    </div>
+    <p class="fst-italic"><i>{{ object.body|slice:"0:100" }}...</i></p>
+  </a>
+
+
+{% endfor %}
+{% endblock %}

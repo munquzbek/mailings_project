@@ -5,16 +5,16 @@
     display: flex;
     justify-content: space-between;
 }
-
 </style>
-<div class="container text-center">
+
+<div class="container">
     <div class="card">
         <div class="card-header">
-            {{ object.email }}
+            Number of message: {{ object.pk }}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ object.name }} {{ object.surname }}</h5>
-            <p class="card-text">{{ object.comment }}</p>
+            <h5 class="card-title">{{ object.title }}</h5>
+            <p class="card-text">{{ object.body }}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
     </div>
