@@ -1,0 +1,22 @@
+{% extends 'mails/base.html'%}
+{% block content %}
+
+{% for object in object_list %}
+<style>
+h5{
+font-weight: bold;
+color: black;
+}
+
+</style>
+  <a href="{% url 'mails:view_message' object.pk %}" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="fst-italic">{{ object.send_time }}</h5>
+    </div>
+    <p class="fst-italic"><i>{{ object.status }}</i></p>
+    <p class="fst-italic"><i>{{ object.period }}</i></p>
+  </a>
+
+
+{% endfor %}
+{% endblock %}

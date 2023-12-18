@@ -15,7 +15,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ object.title }}</h5>
             <p class="card-text">{{ object.body }}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href="{% url 'mails:create_setup' %}" class="btn btn-primary">Set up mailing settings</a>
         </div>
     </div>
 </div>
