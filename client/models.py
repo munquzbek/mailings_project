@@ -8,7 +8,7 @@ class Client(models.Model):
     comment = models.TextField(verbose_name='Комметарий')
 
     def __str__(self):
-        return f'{self.name} {self.surname}'
+        return f'{self.email}'
 
     class Meta:
         verbose_name = 'Клиент'

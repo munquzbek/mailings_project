@@ -1,5 +1,7 @@
 from django.db import models
 
+from client.models import Client
+
 PERIOD_CHOICES = (
     ("day", "day"),
     ("week", "week"),
@@ -33,6 +35,9 @@ class Settings(models.Model):
     send_time = models.TimeField(auto_now=False, auto_now_add=False, verbose_name='Время рассылки')
     period = models.CharField(choices=PERIOD_CHOICES, verbose_name='Периодичность')
     status = models.CharField(choices=STATUS_CHOICES, default="created")
+
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщение')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
 
     def __str__(self):
         return f'at {self.send_time} per ({self.period}), {self.status}'
