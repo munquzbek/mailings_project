@@ -7,6 +7,7 @@ from mails.models import Logs, Settings
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
+from datetime import datetime
 
 # Create an instance of BackgroundScheduler
 scheduler = BackgroundScheduler()
@@ -38,9 +39,10 @@ def schedule_jobs():
                 id=f'day_check_{mailing.id}',
                 name='Run everyday',
             )
+
         elif mailing.period == 'week':
             # Schedule a job to run 'send_mails' every week at the specified time
-            trigger = CronTrigger(day_of_week=mailing.send_time.day_of_week,
+            trigger = CronTrigger(day_of_week='Mon',
                                   hour=mailing.send_time.hour,
                                   minute=str(mailing.send_time.minute))
             scheduler.add_job(
@@ -49,17 +51,19 @@ def schedule_jobs():
                 id=f'week_check_{mailing.id}',
                 name='Run every week',
             )
+
         else:
             # Schedule a job to run 'send_mails' on a specific day of the month at the specified time
             scheduler.add_job(
                 send_mails,
                 trigger='cron',
-                day=mailing.send_time.day,
+                day=1,
                 hour=mailing.send_time.hour,
                 minute=mailing.send_time.minute,
                 id=f'month_check_{mailing.id}',
                 name='Run every month',
             )
+    scheduler.start()
 
 
 def handle_email_sending(mailing):
@@ -127,14 +131,16 @@ def send_mails():
             handle_email_sending(mailing)
         else:
             # If the mailing is neither active nor created, log that all jobs are finished
-            print('All jobs finished')
+            print(f'{mailing.id} scheduled job finished')
 
 
 def run():
     # Schedule jobs
     print('starts....')
     scheduler.add_job(send_mails, 'interval', minutes=1)
-    scheduler.add_job(schedule_jobs, 'cron', hour=23, minute=59)
+    scheduler.add_job(schedule_jobs, 'cron', hour=5, minute=35)
+
+    # Start the scheduler after all jobs are added
     scheduler.start()
 
 
