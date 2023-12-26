@@ -1,7 +1,8 @@
 from django.urls import path
 
 from mails.apps import MailsConfig
-from mails.views import MessageCreateView, MessageListView, MessageDetailView, SettingsCreateView, SettingsListView
+from mails.views import MessageCreateView, MessageListView, MessageDetailView, SettingsCreateView, SettingsListView, \
+    SettingsDetailView, SettingsUpdateView
 
 app_name = MailsConfig.name
 
@@ -11,4 +12,6 @@ urlpatterns = [
     path('view_message/<int:pk>/', MessageDetailView.as_view(), name='view_message'),
     path('setup/', SettingsCreateView.as_view(), name='create_setup'),
     path('list_setup/', SettingsListView.as_view(), name='list_setup'),
+    path('view_setup/<int:pk>/', SettingsDetailView.as_view(), name='view_setup'),
+    path('update_setup/<int:pk>/', SettingsUpdateView.as_view(), name='update_setup'),
 ]

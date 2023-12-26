@@ -139,4 +139,3 @@ EMAIL_HOST_PASSWORD = 'rdgmzzajokwxvull'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
-

@@ -9,7 +9,7 @@ color: black;
 }
 
 </style>
-  <a href="{% url 'mails:view_message' object.pk %}" class="list-group-item list-group-item-action">
+  <a href="{% url 'mails:view_setup' object.pk %}" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="fst-italic">{{ object.send_time }}</h5>
     </div>
