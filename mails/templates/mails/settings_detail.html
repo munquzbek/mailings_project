@@ -21,6 +21,7 @@
             <p class="card-text">Message Title: {{ object.message }}</p>
             <p class="card-text">Message Body: {{ object.message.body}}</p>
             <a href="{% url 'mails:update_setup' object.pk %}" class="btn btn-primary">Update</a>
+            <a href="{% url 'mails:delete_setup' object.pk %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>
