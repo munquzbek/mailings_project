@@ -1,6 +1,7 @@
 from django.db import models
 
 from client.models import Client
+from users.models import User, NULLABLE
 
 # Period choices for Settings
 PERIOD_CHOICES = (
@@ -47,6 +48,7 @@ class Settings(models.Model):
     # on_delete=models.CASCADE if you delete message or client it deletes Settings also
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщение')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, editable=False, **NULLABLE, verbose_name='Автор')
 
     def __str__(self):
         return f'id:{self.pk}, {self.send_time} per ({self.period}), {self.status}'

@@ -1,3 +1,4 @@
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
@@ -22,7 +23,6 @@ def verified_email(request, token):
         if user:
             user.is_verified = True
             user.save()
-            print(user.__dict__)
             msg = 'Your email verified'
             return render(request, 'users/verified_email.html', {'msg': msg})
     except Exception as e:
