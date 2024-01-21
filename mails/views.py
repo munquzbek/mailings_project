@@ -1,30 +1,31 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 from mails.models import Message, Settings
 
 
-class MessageCreateView(CreateView):
+class MessageCreateView(LoginRequiredMixin, CreateView):
     model = Message
     fields = ('title', 'body',)
     success_url = reverse_lazy('mails:list_message')
 
 
-class MessageListView(ListView):
+class MessageListView(LoginRequiredMixin, ListView):
     model = Message
 
 
-class MessageDetailView(DetailView):
+class MessageDetailView(LoginRequiredMixin, DetailView):
     model = Message
 
 
-class SettingsCreateView(CreateView):
+class SettingsCreateView(LoginRequiredMixin, CreateView):
     model = Settings
     fields = ('send_time', 'period', 'status', 'message', 'client')
     success_url = reverse_lazy('mails:list_setup')
 
 
-class SettingsListView(ListView):
+class SettingsListView(LoginRequiredMixin, ListView):
     model = Settings
 
     # def get_context_data(self, *args, **kwargs):
@@ -34,16 +35,16 @@ class SettingsListView(ListView):
     #     return context_data
 
 
-class SettingsDetailView(DetailView):
+class SettingsDetailView(LoginRequiredMixin, DetailView):
     model = Settings
 
 
-class SettingsUpdateView(UpdateView):
+class SettingsUpdateView(LoginRequiredMixin, UpdateView):
     model = Settings
     fields = ('send_time', 'period', 'status', 'message', 'client')
     success_url = reverse_lazy('mails:list_setup')
 
 
-class SettingsDeleteView(DeleteView):
+class SettingsDeleteView(LoginRequiredMixin, DeleteView):
     model = Settings
     success_url = reverse_lazy('mails:list_setup')

@@ -18,7 +18,7 @@
         </form>
         {% else %}
         <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-dark me-4">Login</a>
-        <button type="button" class="btn btn-dark">Sign-up</button>
+        <a href="{% url 'users:signup' %}" type="button" class="btn btn-dark">Sign-up</a>
         {% endif %}
     </div>
 </header>
