@@ -1,25 +1,33 @@
 {% extends 'mails/base.html'%}
 {% block content %}
 
-{% if object %}
-  {% for object in object_list %}
-  <style>
+<style>
   h1{
   font-weight: bold;
   color: black;
   }
 
-  </style>
-    <a href="{% url 'mails:view_setup' object.pk %}" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="fst-italic">{{ object.send_time }}</h5>
-      </div>
-      <p class="fst-italic"><i>{{ object.client }}</i></p>
-      <p class="fst-italic"><i>{{ object.status }}</i></p>
-      <p class="fst-italic"><i>{{ object.period }}</i></p>
+
+</style>
+
+<div class="col-12">
+    <a href="{% url 'mails:create_setup' %}" class="btn btn-outline-dark" role="button">
+        Add new Settings
     </a>
-  {% endfor %}
-{% else %}
-  <h1>No settings, to add click ---------------------⬆</h1>
-{% endif %}
+</div>
+
+{% for object in object_list %}
+<div class="col-6">
+    <br>
+    <a href="{% url 'mails:view_setup' object.pk %}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="fst-italic">Send time: {{ object.send_time }}</h5>
+        </div>
+        <p class="fst-italic"><i>to: {{ object.client.name }} {{ object.client.surname }} ({{ object.client }})</i></p>
+        <p class="fst-italic"><i>status: {{ object.status }}</i></p>
+        <p class="fst-italic"><i>title of message: {{ object.message }}</i></p>
+        <p class="fst-italic"><i>periodicity: every{{ object.period }}</i></p>
+    </a>
+</div>
+{% endfor %}
 {% endblock %}

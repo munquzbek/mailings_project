@@ -23,12 +23,15 @@ class SettingsCreateView(CreateView):
     fields = ('send_time', 'period', 'status', 'message', 'client')
     success_url = reverse_lazy('mails:list_setup')
 
-    def form_valid(self, form):
-        return super().form_valid(form)
-
 
 class SettingsListView(ListView):
     model = Settings
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context_data = super().get_context_data(*args, **kwargs)
+    #     for data in context_data['object_list']:
+    #         status_check_and_send(data)
+    #     return context_data
 
 
 class SettingsDetailView(DetailView):

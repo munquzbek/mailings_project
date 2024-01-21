@@ -1,6 +1,7 @@
 from django.urls import path
 
 from client.apps import ClientConfig
+
 from client.views import ClientListView, ClientCreateView, ClientDetailView
 
 app_name = ClientConfig.name

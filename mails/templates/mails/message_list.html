@@ -1,25 +1,39 @@
 {% extends 'mails/base.html'%}
 {% block content %}
-
-{% if object %}
-  {% for object in object_list %}
-  <style>
+<style>
   h5{
   font-weight: bold;
   color: black;
   }
-  </style>
-    <a href="{% url 'mails:view_message' object.pk %}" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="fst-italic">{{ object.title }}</h5>
-        <small class="text-body-secondary">{{ object.create_at }}</small>
-      </div>
-      <p class="fst-italic"><i>{{ object.body|slice:"0:100" }}...</i></p>
+
+
+</style>
+
+<div class="col-12">
+    <a href="{% url 'mails:create_message' %}" class="btn btn-outline-dark" role="button">
+        Add new Message
     </a>
-  {% endfor %}
+</div>
 
-{% else %}
-  <h5 class="fst-italic">No messages added, click ----------------------------------⬆️ to add</h5>
+{% for object in object_list %}
+<div class="col-12">
+    <br>
+    <a href="{% url 'mails:view_message' object.pk %}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="fst-italic">Title: {{ object.title }}</h5>
+            <small class="text-body-secondary">{{ object.create_at }}</small>
+        </div>
+        <p class="fst-italic">
+            <i>Message Body:
+                {% if object.body|length >= 100 %}
+                {{ object.body|slice:"0:100" }}...
+                {% else %}
+                {{ object.body }}
+                {% endif %}
+            </i>
+        </p>
+    </a>
+</div>
 
-{% endif %}
+{% endfor %}
 {% endblock %}

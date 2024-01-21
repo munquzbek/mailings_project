@@ -6,15 +6,19 @@
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="{% url 'client:list' %}" class="nav-link px-4 link-secondary text-dark bg-white">Clients</a></li>
-        <li><a href="{% url 'client:create' %}" class="nav-link px-4 text-dark bg-white">Create Client</a></li>
         <li><a href="{% url 'mails:list_message' %}" class="nav-link px-4 text-dark bg-white">Messages</a></li>
-        <li><a href="{% url 'mails:create_message' %}" class="nav-link px-4 text-dark bg-white">Create Message</a></li>
         <li><a href="{% url 'mails:list_setup' %}" class="nav-link px-4 text-dark bg-white">Settings</a></li>
-        <li><a href="{% url 'mails:create_setup' %}" class="nav-link px-4 text-dark bg-white">Create Settings</a></li>
     </ul>
 
     <div class="col-md-2 text-end">
-        <button type="button" class="btn btn-outline-dark me-4">Login</button>
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-dark me-4" >logout</button>
+        </form>
+        {% else %}
+        <a href="{% url 'users:login' %}" type="button" class="btn btn-outline-dark me-4">Login</a>
         <button type="button" class="btn btn-dark">Sign-up</button>
+        {% endif %}
     </div>
 </header>

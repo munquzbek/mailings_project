@@ -1,22 +1,39 @@
 {% extends 'mails/base.html' %}
 {% block content %}
-{% if object %}
-    <style>
+<style>
         h5{
             font-weight: bold;
             color: black;
         }
-    </style>
-    {% for object in object_list %}
+
+</style>
+
+
+<div class="col-12">
+    <a href="{% url 'client:create' %}" class="btn btn-outline-dark" role="button">
+        Add new Client
+    </a>
+</div>
+
+{% for object in object_list %}
+<div class="col-12">
+    <br>
     <a href="{% url 'client:view' object.pk %}" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
             <h5 class="fst-italic">{{ object.name }} {{ object.surname }}</h5>
             <small class="text-body-secondary">{{ object.email }}</small>
         </div>
-        <p class="fst-italic"><i>{{ object.comment|slice:"0:100" }}...</i></p>
+        <p class="fst-italic">
+            <i>Comment:
+                {% if object.body|length >= 100 %}
+                {{ object.comment|slice:"0:100" }}...
+                {% else %}
+                {{ object.comment }}
+                {% endif %}
+            </i>
+        </p>
     </a>
-    {% endfor %}
-{% else %}
-    <h5>No clients added, click -------⬆️ to add</h5>
-{% endif %}
+</div>
+{% endfor %}
+
 {% endblock %}
