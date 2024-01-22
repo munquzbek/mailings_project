@@ -7,15 +7,6 @@
   color: black;
   }
 
-
-
-
-
-
-
-
-
-
 </style>
 
 <div class="col-12">
@@ -27,11 +18,14 @@
 {% for object in object_list %}
 <div class="col-6">
     <br>
-
-    <a href="{% url 'mails:view_setup' object.pk %}" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="fst-italic">Send time: {{ object.send_time }} author: {{ object.author }}</h5>
-        </div>
+    {% if object.author != user and not user.is_staff %}
+    <a href="{% url 'mails:list_setup'%}" class="list-group-item list-group-item-action">
+        {% else %}
+        <a href="{% url 'mails:view_setup' object.pk %}" class="list-group-item list-group-item-action">
+            {% endif %}
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="fst-italic">Send time: {{ object.send_time }} author: {{ object.author }}</h5>
+            </div>
             <p class="fst-italic">
                 <i>
                     to: {{ object.client.name }} {{ object.client.surname }} ({{ object.client }})
@@ -41,7 +35,7 @@
             <p class="fst-italic"><i>title of message: {{ object.message }}</i></p>
             <p class="fst-italic"><i>periodicity: every{{ object.period }}</i></p>
 
-    </a>
+        </a>
 </div>
 {% endfor %}
 {% endblock %}

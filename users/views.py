@@ -11,6 +11,7 @@ from users.models import User
 
 
 def need_verify(request):
+
     return render(request, 'users/need_verify.html')
 
 

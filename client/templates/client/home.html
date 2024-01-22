@@ -1,0 +1,55 @@
+{% extends 'mails/base.html'%}
+{% block content %}
+
+{% for blog in blogs %}
+
+<div class="col-4">
+    <div class="card mb-1">
+        <img src="/media/{{blog.image}}"/>
+        <div class="card-body">
+            <h5 class="card-title"> {{ blog.title }}</h5>
+            <p class="card-text">{{ blog.content }}</p>
+            <p class="card-text" align="right"><small class="text-body-secondary">{{ blog.create_date }}
+                {{ blog.views_count }} views</small></p>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+
+<div class="col-6">
+    <div class="card">
+        <div class="card-header" align="center">
+            Quantity of settings of mails
+        </div>
+        <div class="card-body" align="center">
+            <h1>{{ setups|length }}</h1>
+        </div>
+    </div>
+</div>
+<div class="col-6">
+    <div class="card" align="center">
+        <div class="card-header">
+            Quantity of active settings of mails
+        </div>
+        <div class="card-body" align="center">
+            <h1>{{ active_setups|length }}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12 mx-auto">
+    <br>
+    <div class="card" align="center">
+        <div class="card-header">
+            Quantity of clients of site
+        </div>
+        <div class="card-body" align="center">
+            <h1>{{ clients|length }}</h1>
+        </div>
+    </div>
+    <br>
+</div>
+
+{% endblock %}

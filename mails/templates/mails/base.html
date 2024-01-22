@@ -26,28 +26,22 @@
   color: black;
   text-align: center;
 }
+
 </style>
 
 <body>
 {% include 'mails/includes/inc_navbar.html' %}
 <main>
-        <div class="container">
+    <div class="container">
 
-            <div class="row">
-                {% block content%}
-                {% endblock %}
-            </div>
+        <div class="row">
+            {% block content%}
+            {% endblock %}
         </div>
+    </div>
 
 </main>
 
-<div class="footer">
-<footer class="text-body-secondary py-4">
-    <div class="container">
-        <p class="mb-1">&copy;2022-{% now 'Y'%} mailing project </p>
-    </div>
-</footer>
-</div>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
