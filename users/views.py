@@ -10,6 +10,10 @@ from users.forms import UserRegisterForm
 from users.models import User
 
 
+def need_verify(request):
+    return render(request, 'users/need_verify.html')
+
+
 def success(request):
     context = {
         'title': 'Success sign up'
@@ -52,3 +56,5 @@ class RegisterView(CreateView):
             fail_silently=False,
         )
         return super().form_valid(form)
+
+

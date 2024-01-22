@@ -57,6 +57,11 @@ class Settings(models.Model):
         verbose_name = 'Рассылка'
         verbose_name_plural = 'Рассылки'
 
+        permissions = [
+            ('can_change_status',
+             'Can change status of settings'),
+        ]
+
 
 class Logs(models.Model):
     time_last_try = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Дата и время последней попытки')

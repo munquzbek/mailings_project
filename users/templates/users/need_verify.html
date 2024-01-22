@@ -1,0 +1,14 @@
+{% extends 'mails/base.html' %}
+{% block content %}
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 align="center">Please, to use web-site you need to verify email first</h4>
+        </div>
+        <div class="card-body">
+            <p align="center"><a href="{% url 'users:signup' %}" type="submit" class="btn btn-outline-primary">Click
+                to send link to email</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
