@@ -32,7 +32,7 @@ class Message(models.Model):
     create_at = models.DateTimeField(auto_now=True, verbose_name='Дата создания')
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.title} {self.body}'
 
     class Meta:
         verbose_name = 'Сообщение'

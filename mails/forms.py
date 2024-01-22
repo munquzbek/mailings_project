@@ -15,3 +15,8 @@ class SettingsCreateForm(StyleFormMixin, forms.ModelForm):
         model = Settings
         fields = '__all__'
 
+
+class SettingsOffForm(forms.ModelForm):
+    class Meta:
+        model = Settings
+        fields = ('status',)
