@@ -18,7 +18,6 @@ class User(AbstractUser):
     country = CountryField(verbose_name='страна',
                            **NULLABLE)  # installed package django-countries with pyuca translation
     token = models.CharField(max_length=100, default=uuid.uuid4)
-    is_verified = models.BooleanField(default=False, verbose_name='Верифицирован')
 
     USERNAME_FIELD = "email"  # through what log in
     REQUIRED_FIELDS = []

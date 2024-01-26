@@ -1,15 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.http import Http404
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
-from mails.forms import SettingsCreateForm, SettingsOffForm
+from mails.forms import SettingsCreateForm
 from mails.models import Message, Settings
 
 
 class UserIsVerified(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_verified
+        return self.request.user.is_active
+
+    def handle_no_permission(self):
+        return redirect('users:need_verify')
 
 
 class MessageCreateView(LoginRequiredMixin, UserIsVerified, CreateView):

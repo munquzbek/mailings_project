@@ -26,7 +26,7 @@ def verified_email(request, token):
     try:
         user = get_object_or_404(User, token=token)
         if user:
-            user.is_verified = True
+            user.is_active = True
             user.save()
             msg = 'Your email verified'
             return render(request, 'users/verified_email.html', {'msg': msg})
