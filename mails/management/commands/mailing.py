@@ -103,9 +103,9 @@ def send_every_month():
 
 
 def set_log_success(obj):
-    current_time = datetime.now().time()
+    current_time = datetime.now().date()
     log_instance = Logs(
-        time_last_try=current_time,
+        time_last_try=str(current_time),
         status_of_try='finished',
         server_response='Mail sent successfully.',
         settings=obj
@@ -114,9 +114,9 @@ def set_log_success(obj):
 
 
 def set_log_not_time(obj):
-    current_time = datetime.now().time()
+    current_time = datetime.now().date()
     log_instance = Logs(
-        time_last_try=current_time,
+        time_last_try=str(current_time),
         status_of_try='active',
         server_response='Mail not sent. Scheduled time not reached.',
         settings=obj
@@ -143,7 +143,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         scheduler.add_job(
             send_every_day,
-            trigger=CronTrigger(minute="*/3"),
+            trigger=CronTrigger(second="*/3"),
             id="send_every_day",  # The `id` assigned to each job MUST be unique
             max_instances=1,
             replace_existing=True,

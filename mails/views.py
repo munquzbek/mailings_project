@@ -3,9 +3,10 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django_apscheduler.jobstores import DjangoJobStore
 
 from mails.forms import SettingsCreateForm
-from mails.models import Message, Settings
+from mails.models import Message, Settings, Logs
 
 
 class UserIsVerified(UserPassesTestMixin):
@@ -59,6 +60,11 @@ class SettingsDetailView(LoginRequiredMixin, UserIsVerified, DetailView):
         if self.object.author != self.request.user and not self.request.user.is_staff:
             raise Http404
         return self.object
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['store'] = Logs.objects.filter(settings=self.object)
+        return context_data
 
 
 class SettingsUpdateView(LoginRequiredMixin, UserIsVerified, UpdateView):

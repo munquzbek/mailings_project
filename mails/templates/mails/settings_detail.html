@@ -6,6 +6,9 @@
     justify-content: space-between;
 }
 
+
+
+
 </style>
 
 <div class="container">
@@ -27,4 +30,25 @@
         </div>
     </div>
 </div>
+
+<div class="col-12">
+    <br>
+    <h1>
+        Logs
+    </h1>
+    <hr>
+</div>
+
+
+{% for s in store %}
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Last try: {{ s.time_last_try }}</h5>
+            <p class="card-text">Status of try: {{ s.status_of_try }}</p>
+            <p class="card-text">Response: {{ s.server_response }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
